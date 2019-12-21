@@ -1,0 +1,8 @@
+RYS-330 USB camera
+
+focal length -- 3 million  
+resolution ratio -- 1920*1080(?)  
+sensor pixels -- 3 million  
+sensor -- CMOS  
+type -- RYS-330  
+size -- 32*32  
