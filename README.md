@@ -1,1 +1,3 @@
-### Add your own branches
+# 基于mxnet的数字识别模型
+
+基于mxnet框架，用了lenet的结构搭的模型。还没处理训练集，没训练
