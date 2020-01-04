@@ -32,7 +32,7 @@ def test():
         if not os.path.exists(annotation_dump_path):
             os.makedirs(annotation_dump_path)
 
-        # for each annotation file, find the arnor information
+        # for each annotation file, find the armor information
         # and dump as json file
         # also cut the useful part of image out
         for file in os.listdir(annotation_path):
@@ -50,8 +50,9 @@ def test():
                 ann_dict = xmltodict.parse(xml_str)
                 xml_file.close()
 
-            # 这里用file是无奈之举，因为数据集中英文搞混了，这样就有可能对应错图片了
-            img_src = cv2.imread(os.path.join(image_path,os.path.splitext(file)[0]+'.jpg'))
+            # 这里用file是无奈之举，因为annotation中用英文名，而img_src是中文名，只能用annotation的文件名代替了
+            img_src = cv2.imread(os.path.join(
+                image_path, os.path.splitext(file)[0]+'.jpg'))
 
             # 一张图片一个json文件
 
@@ -61,7 +62,8 @@ def test():
                     object_ = ann_dict['annotation']["object"]
 
                 num_object += 1
-                img_name = os.path.splitext(file)[0] + "_%s" % num_object + ".jpg"
+                img_name = os.path.splitext(
+                    file)[0] + "_%s" % num_object + ".jpg"
 
                 if object_['name'] == 'armor':
                     # cut image (corespondedly)
@@ -80,10 +82,10 @@ def test():
                     except TypeError as e:
                         print(e, 'on file: ' +
                               ann_dict['annotation']['filename'])
+                        print("中英文名都没有对应的image")
                         break
                     finally:
                         pass
-
             # dump to json
             with open(os.path.join(annotation_dump_path, json_name), 'w') as json_file:
                 json.dump(anno_refine_json, json_file, ensure_ascii=False)
