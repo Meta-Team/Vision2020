@@ -36,32 +36,58 @@ def test():
         # and dump as json file
         # also cut the useful part of image out
         for file in os.listdir(annotation_path):
-            i = 0
+
+            num_object = 0
+            anno_refine_json = {}
+
+            json_name = os.path.splitext(file)[0]+'.json'
+            if os.path.exists(os.path.join(annotation_dump_path, json_name)):
+                # continue
+                pass
             print("refining annotation: "+file)
-            with open(os.path.join(annotation_path, file)) as xml_file:
+            with open(os.path.join(annotation_path, file), 'r') as xml_file:
                 xml_str = xml_file.read()
                 ann_dict = xmltodict.parse(xml_str)
-            img_src = cv2.imread(os.path.join(
-                image_path, ann_dict['annotation']['filename']))
-            # cv2.imshow('2',img_src)
-            for object_ in ann_dict['annotation']["object"]:
-                i += 1
-                if object_['name'] == 'armor':
-                    # collect useful information
-                    for key in object_.keys():
-                        print(key, object_[key])
-                    
-                    # dump to json
+                xml_file.close()
 
+            # 这里用file是无奈之举，因为数据集中英文搞混了，这样就有可能对应错图片了
+            img_src = cv2.imread(os.path.join(image_path,os.path.splitext(file)[0]+'.jpg'))
+
+            # 一张图片一个json文件
+
+            for object_ in ann_dict['annotation']["object"]:
+                # 图中只有一个object的情况
+                if 'name' in ann_dict['annotation']["object"]:
+                    object_ = ann_dict['annotation']["object"]
+
+                num_object += 1
+                img_name = os.path.splitext(file)[0] + "_%s" % num_object + ".jpg"
+
+                if object_['name'] == 'armor':
                     # cut image (corespondedly)
+                    # 只要有找不到图片的就直接跳过
                     ymin = int(float(object_['bndbox']['ymin']))
                     ymax = int(float(object_['bndbox']['ymax']))
                     xmin = int(float(object_['bndbox']['xmin']))
                     xmax = int(float(object_['bndbox']['xmax']))
-                    img = img_src[ymin:ymax, xmin:xmax]
-                    cv2.imwrite(os.path.join(image_dump_path,
-                                             os.path.splitext(ann_dict['annotation']['filename'])[0] +"_%s" %i +".jpg"),
-                                img)
+                    try:
+                        img = img_src[ymin:ymax, xmin:xmax]
+                        cv2.imwrite(os.path.join(
+                            image_dump_path, img_name), img)
+                        # collect useful information
+                        anno_refine_json[img_name] = [
+                            object_['armor_class'], object_['armor_color']]
+                    except TypeError as e:
+                        print(e, 'on file: ' +
+                              ann_dict['annotation']['filename'])
+                        break
+                    finally:
+                        pass
+
+            # dump to json
+            with open(os.path.join(annotation_dump_path, json_name), 'w') as json_file:
+                json.dump(anno_refine_json, json_file, ensure_ascii=False)
+                json_file.close()
         break
     return
 

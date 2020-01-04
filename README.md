@@ -1,7 +1,9 @@
 # 基于mxnet的数字识别模型
 
 ## ISSUE:
+- 要重新清洗数据集
    - [ ] 官方的装甲板box把两边的灯条放进去了，自己的应该没有，要割掉这一部分
+   - [ ] 官方的图有从上往下拍的，装甲板的数字有旋转超过90度的
    - [ ] 官方识别的装甲板有一些全是长灯条，让人头疼
    - [ ] `DJI ROCO\robomaster_Central China Regional Competition\image_annotation\AllianceVsArtisans_BO2_2_0.xml这个annotation`找不到原图文件
 
