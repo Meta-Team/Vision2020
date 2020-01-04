@@ -26,7 +26,7 @@ def test():
 
         image_dump_path = os.path.join(dump_path, region, "image")
         annotation_dump_path = os.path.join(
-            dump_path, region, "image_annotation")
+            dump_path, region, "image_annotation") 
         if not os.path.exists(image_dump_path):
             os.makedirs(image_dump_path)
         if not os.path.exists(annotation_dump_path):
