@@ -16,7 +16,6 @@ if not os.path.exists(dump_path):
     os.makedirs(dump_path)
 # %%
 
-
 def main():
     for region in regions:
         # for each folder in official dataset, make corresponding dump folders
@@ -89,6 +88,38 @@ def main():
                 json_file.close()
     return
 
+# 用xml的elementtree库来做分析，最后没有用到
+def test_with_xml_tree():
+    for region in regions:
+        os.chdir(region)
+        print("working on %s" % region)
+
+        # image_path = os.path.join(region, "image")
+        annotation_path = os.path.join(region, "image_annotation")
+
+        # for each annotation file, find the arnor information
+        # and dump as json file
+        # also cut the useful part of image out
+        for file in os.listdir(annotation_path):
+            print("refining annotation: "+file)
+            xml_tree = ET.parse(os.path.join(annotation_path, file))
+            root = xml_tree.getroot()
+            for object_ in root.findall('object'):
+                print("find an object")
+
+                if object_.find('name').text == "armor":
+                    for child in object_:
+                        print(child)
+                        # collect useful information
+                        # dump to json
+                        # cut image (corespondedly)
+                else:
+                    print('not armor object')
+
+
+            break
+        break
+    return
 
 if __name__ == "__main__":
     main()
