@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 # %%
 # import pretty_errors
 import xml.etree.ElementTree as ET
@@ -16,8 +17,9 @@ if not os.path.exists(dump_path):
 # %%
 
 
-def test():
+def main():
     for region in regions:
+        # for each folder in official dataset, make corresponding dump folders
         os.chdir(os.path.join(root_path, region))
         print("working on %s" % region)
 
@@ -36,67 +38,61 @@ def test():
         # and dump as json file
         # also cut the useful part of image out
         for file in os.listdir(annotation_path):
+            num_object = 0 # count the number of armors
+            anno_refine_json = {} # dictionary of refined armor info
 
-            num_object = 0
-            anno_refine_json = {}
-
+            # skip if already refined 
             json_name = os.path.splitext(file)[0]+'.json'
             if os.path.exists(os.path.join(annotation_dump_path, json_name)):
-                # continue
-                pass
+                continue
+            
+            # skip if no object in annotation
             print("refining annotation: "+file)
             with open(os.path.join(annotation_path, file), 'r') as xml_file:
                 xml_str = xml_file.read()
                 ann_dict = xmltodict.parse(xml_str)
                 xml_file.close()
+            if not 'object' in ann_dict['annotation']:
+                continue
 
             # 这里用file是无奈之举，因为annotation中用英文名，而img_src是中文名，只能用annotation的文件名代替了
             img_src = cv2.imread(os.path.join(
                 image_path, os.path.splitext(file)[0]+'.jpg'))
 
             # 一张图片一个json文件
-
             for object_ in ann_dict['annotation']["object"]:
-                # 图中只有一个object的情况
+                # annotation只有一个object的情况
                 if 'name' in ann_dict['annotation']["object"]:
                     object_ = ann_dict['annotation']["object"]
 
-                num_object += 1
-                img_name = os.path.splitext(
-                    file)[0] + "_%s" % num_object + ".jpg"
-
+                num_object += 1 #文件名从1开始计数
+                img_name = os.path.splitext(file)[0] + "_%s" % num_object + ".jpg"
                 if object_['name'] == 'armor':
                     # cut image (corespondedly)
-                    # 只要有找不到图片的就直接跳过
                     ymin = int(float(object_['bndbox']['ymin']))
                     ymax = int(float(object_['bndbox']['ymax']))
                     xmin = int(float(object_['bndbox']['xmin']))
                     xmax = int(float(object_['bndbox']['xmax']))
                     try:
+                        # skip if connot find img_src (NoneType for img_src)
                         img = img_src[ymin:ymax, xmin:xmax]
-                        cv2.imwrite(os.path.join(
-                            image_dump_path, img_name), img)
+                        cv2.imwrite(os.path.join(image_dump_path, img_name), img)
                         # collect useful information
-                        anno_refine_json[img_name] = [
-                            object_['armor_class'], object_['armor_color']]
+                        anno_refine_json[img_name] = [object_['armor_class'], object_['armor_color']]
                     except TypeError as e:
-                        print(e, 'on file: ' +
-                              ann_dict['annotation']['filename'])
+                        print(e, 'on file: ' +ann_dict['annotation']['filename'])
                         print("中英文名都没有对应的image")
                         break
-                    finally:
-                        pass
             # dump to json
             with open(os.path.join(annotation_dump_path, json_name), 'w') as json_file:
                 json.dump(anno_refine_json, json_file, ensure_ascii=False)
                 json_file.close()
-        break
     return
 
 
 if __name__ == "__main__":
-    # main()
-    test()
+    main()
+
 
 
 # %%
