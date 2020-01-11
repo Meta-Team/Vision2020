@@ -16,6 +16,10 @@
    - [ ] 官方识别的装甲板有一些全是长灯条，让人头疼
    - [ ] `DJI ROCO\robomaster_Central China Regional Competition\image_annotation\AllianceVsArtisans_BO2_2_0.xml这个annotation`找不到原图文件
 
+## 2020.1.11
+上次开会讨论得出的模型示意图，和后续可能的发展方向
+![](./img/识别模型示意图.png)
+
 ## 2020.1.4
 官方四个文件夹都已经初步处理完了
 
