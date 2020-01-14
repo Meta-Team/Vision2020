@@ -16,6 +16,15 @@
    - [ ] 官方识别的装甲板有一些全是长灯条，让人头疼
    - [ ] `DJI ROCO\robomaster_Central China Regional Competition\image_annotation\AllianceVsArtisans_BO2_2_0.xml这个annotation`找不到原图文件
 
+## 2020.1.14
+更新了`data_clearing_light_bar.py`
+
+搞了一个清洗装甲板图片的程序，程序里面写的挺烂的，图形界面操作真的烦，但这样就可以大家一起 ~~当搬砖工~~ 清洗数据啦
+
+目前决定先用一定条件，把大部分可能的选出来，然后人工找那些程序不太好判断的
+
+
+
 ## 2020.1.11
 上次开会讨论得出的模型示意图，和后续可能的发展方向
 ![](./img/识别模型示意图.png)

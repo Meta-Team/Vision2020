@@ -6,7 +6,7 @@ import os
 import json
 import xmltodict
 import cv2
-import numpy
+import numpy as np
 
 root_path = "/mnt/e/robomaster/DJI ROCO"  # change to your own path
 dump_path = os.path.join(os.path.dirname(root_path), 'mydump')
