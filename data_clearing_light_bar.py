@@ -109,7 +109,7 @@ if __name__ == "__main__":
     main_root_path = '/mnt/e/robomaster/mydump/'
     regions = [x for x in os.listdir(main_root_path) if (
         os.path.isdir(os.path.join(main_root_path, x))and x != 'lightbar')]
-    for region in regions[2:3]:
+    for region in (regions[-1],):
         root_path = os.path.join(main_root_path,region)
 
         # show_light_bar(root_path, 5, 5, 1)
