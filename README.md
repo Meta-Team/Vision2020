@@ -16,6 +16,12 @@
    - [ ] 官方识别的装甲板有一些全是长灯条，让人头疼
    - [ ] `DJI ROCO\robomaster_Central China Regional Competition\image_annotation\AllianceVsArtisans_BO2_2_0.xml这个annotation`找不到原图文件
 
+## 2020.1.15
+更新了`data_clearing_light_bar.py`
+
+完善了判断灯条的条件，四个数据集第一次灯条清洗了，还差一些没有判断出来的，
+应该要降低标准人工筛选了。
+
 ## 2020.1.14
 更新了`data_clearing_light_bar.py`
 
