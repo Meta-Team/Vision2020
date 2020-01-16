@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*- 
+
 # %%
-# import pretty_errors
 import xml.etree.ElementTree as ET
 import os
 import json
@@ -10,11 +10,54 @@ import numpy as np
 
 root_path = "/mnt/e/robomaster/DJI ROCO"  # change to your own path
 dump_path = os.path.join(os.path.dirname(root_path), 'mydump')
+
 regions = [x for x in os.listdir(root_path)
            if os.path.isdir(os.path.join(root_path, x))]
 if not os.path.exists(dump_path):
     os.makedirs(dump_path)
 # %%
+def is_light_bar(image,ratio=1.3,red_avg_threshold=0.2*255,blue_avg_threshold=0.2*255):
+    '''判断给的图片是不是纯灯条，判断方法：
+        1.长宽比，2.图像红蓝通道平均值, 3.图像中最长直线长度'''
+    try:
+        # 判断长宽比和平均值
+        if (image.shape[0] / image.shape[1] > 2*ratio):
+            return True
+        if (image.shape[0] / image.shape[1] > ratio and
+            (image[:, :, 0].mean() > red_avg_threshold or
+             image[:, :, 2].mean() > blue_avg_threshold)):
+
+            '''方法一：Hough直线检测（准确率一般）'''
+            # min_length = 20  # 直线长度阈值
+            # imgray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # 灰度化
+            # edge = cv2.Canny(imgray, 50, 180, apertureSize=3)  # 边缘检测
+            # lines = cv2.HoughLinesP(edge, 1, np.pi/180, min_length)  # 直线检测
+
+            '''方法二：除去白色的Hough直线检测（感觉比方法一更准）'''
+            lines = []
+            min_length = int(image.shape[0]*0.8)
+            imgray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # 灰度化
+            _, mask = cv2.threshold(imgray, 175, 255, cv2.THRESH_BINARY_INV) # 二值化，白色高光变0
+
+            if(image[:, :, 0].mean() > red_avg_threshold):
+                _, imred = cv2.threshold(
+                    image[:, :, 0], 125, 255, cv2.THRESH_BINARY) # 红色通道阈值化处理
+                imred = cv2.bitwise_and(imred, mask)    # 蒙版，删除高光区域
+                lines.extend(cv2.HoughLinesP(imred, 1, np.pi/180, min_length)) #检测纯红色区域有无较长直线
+
+            if(image[:, :, 2].mean() > blue_avg_threshold):
+                _, imblue = cv2.threshold(
+                    image[:, :, 2], 125, 255, cv2.THRESH_BINARY)
+                imblue = cv2.bitwise_and(imblue, mask)
+                lines.extend(cv2.HoughLinesP(imblue, 1, np.pi/180, min_length))
+            
+            if lines is not None: # 存在较长直线，说明有灯条（或者图片不清晰，也删了）
+                return True
+        return False
+    except:
+        # TODO:把不能读取的图片删除
+        return True
+
 
 def main():
     for region in regions:
@@ -46,7 +89,7 @@ def main():
                 continue
             
             # skip if no object in annotation
-            print("refining annotation: "+file)
+            # print("refining annotation: "+file)
             with open(os.path.join(annotation_path, file), 'r') as xml_file:
                 xml_str = xml_file.read()
                 ann_dict = xmltodict.parse(xml_str)
@@ -73,11 +116,14 @@ def main():
                     xmin = int(float(object_['bndbox']['xmin']))
                     xmax = int(float(object_['bndbox']['xmax']))
                     try:
+
                         # skip if connot find img_src (NoneType for img_src)
                         img = img_src[ymin:ymax, xmin:xmax]
+                        # if not is_light_bar(img): #不确定检测是否准确，还是先都选出来，再做识别
                         cv2.imwrite(os.path.join(image_dump_path, img_name), img)
                         # collect useful information
                         anno_refine_json[img_name] = [object_['armor_class'], object_['armor_color']]
+
                     except TypeError as e:
                         print(e, 'on file: ' +ann_dict['annotation']['filename'])
                         print("中英文名都没有对应的image")

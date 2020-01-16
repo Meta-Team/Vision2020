@@ -21,4 +21,5 @@ for region in regions:
         with open(os.path.join(root_path,'..','merged_armor.json'),'w') as f:
             json.dump(new_json,f,ensure_ascii=False)
 
+
 # %%
