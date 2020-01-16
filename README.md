@@ -6,19 +6,23 @@
    2. 根据灯条定位
    3. 识别灯条边上有没有数字
  - 所以我们可以学着用这个来做
- - 通过改变摄像头的曝光，白平衡，gamma等等让`发光`的灯条更加明显
+ - 通过改变摄像头的曝光，白平衡，gamma等等让`发光`的灯条更加明显，具体可以看下面2020.1.11的示意图
  - @ricky!!!，@章鱼哥
 
 ## ISSUE:
-- 要重新清洗数据集
-   - [ ] 官方的装甲板box把两边的灯条放进去了，自己的应该没有，要割掉这一部分
-   - [ ] 官方的图有从上往下拍的，装甲板的数字有旋转超过90度的
-   - [ ] `DJI ROCO\robomaster_Central China Regional Competition\image_annotation\AllianceVsArtisans_BO2_2_0.xml这个annotation`找不到原图文件
+- 要重新清洗官方数据集
+   - [ ] 官方的装甲板box把两边的灯条放进去了，我们自己的应该没有
+      - 要割掉这一部分
+      - 自己的识别框做修改（我更倾向这样）
+   - [x] `DJI ROCO\robomaster_Central China Regional Competition\image_annotation\AllianceVsArtisans_BO2_2_0.xml这个annotation`找不到原图文件
+     - 人手动删掉
    - [x] 官方识别的装甲板有一些全是长灯条，让人头疼
-
+     - 清洗好了
+   - [x] 官方的图有从上往下拍的，装甲板的数字有旋转超过90度的
+     - 2020可能没有这样的装甲板，但都放进去练了
 
 ## 2020.1.16
-装甲板数据集清洗完成，数据集处理相关的放进dataset文件夹
+装甲板数据集清洗完成，数据集处理相关的放进`dataset`文件夹。准备开始训练模型
 
 ## 2020.1.15
 更新了`data_clearing_light_bar.py`
