@@ -16,7 +16,11 @@ project(meta_vision_2020)
 # find the dependent package
 
     find_package(OpenCV REQUIRED)
-
+    
+    set(INC_DIR /usr/local/include)
+    set(LINK_DIR /usr/local/lib)
+    include_directories(${INC_DIR})
+    link_directories(${LINK_DIR})
 
 include_directories(
     Armor
@@ -29,23 +33,33 @@ include_directories(
     Serials
 )
 
+aux_source_directory(Armor      ARMOR_SRCS)
+aux_source_directory(Driver     DRIVER_SRCS)
+aux_source_directory(General    GENERAL_SRCS)
+aux_source_directory(Pose       POSE_SRCS)
+aux_source_directory(Rune       RUNE_SRCS)
+aux_source_directory(Serials    SERIALS_SRCS)
+
+
 set(META_VISION_SRCS
-        Armor/ArmorDetector.cpp
-        Coordata/package.cpp
         Main/main.cpp
-        Driver/RMVideoCapture.cpp
-        Pose/AngleSolver.cpp
-        Serials/Serial.cpp)
+        Main/ImgProdCons.cpp
+        ${ARMOR_SRCS}
+        ${DRIVER_SRCS}
+        ${GENERAL_SRCS}
+        ${POSE_SRCS}
+        ${RUNE_SRCS}
+        ${SERIALS_SRCS})
 
 
 
 add_executable(meta_sentry.exe 
                     Main/test_sentry.cpp ${META_VISION_SRCS})
 
-target_link_libraries(meta_sentry.exe  ${OpenCV_LIBS})
+target_link_libraries(meta_sentry.exe  ${OpenCV_LIBS} v4l2 pthread)
 
 
 add_executable(meta_infantry.exe 
                     Main/test_infantry.cpp ${META_VISION_SRCS})
 
-target_link_libraries(meta_infantry.exe  ${OpenCV_LIBS})
+target_link_libraries(meta_infantry.exe  ${OpenCV_LIBS}  v4l2 pthread)
