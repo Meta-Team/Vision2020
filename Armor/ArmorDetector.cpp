@@ -244,6 +244,7 @@ int ArmorDetector::detect()
 		/*
 		*	pre-treatment
 		*/
+        std::vector<Mat> channels;
         split(_roiImg, channels);   // split color channels
         // pretreat and delete the color of friend armor
         if (_enemy_color == RED)
@@ -266,7 +267,8 @@ int ArmorDetector::detect()
 		*	find and filter light bars  (find the contours)
 		*/
 		vector<vector<Point>> lightContours;
-		cv::findContours(binBrightImg.clone(), lightContours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+		cv::findContours(binBrightImg.clone(), lightContours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);//opencv 4.X
+// 		cv::findContours(binBrightImg.clone(), lightContours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);//opencv 3.X
 		for(const auto& contour : lightContours)
 		{
 			float lightContourArea = contourArea(contour);

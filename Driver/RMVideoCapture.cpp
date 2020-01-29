@@ -15,7 +15,7 @@ CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFT
 IN THE SOFTWARE.
 *******************************************************************************************************************/
 
-#include "RMVideoCapture.hpp"
+#include "RMVideoCapture.h"
 #include "linux/videodev2.h"
 #include <libv4l2.h>
 #include <errno.h>

@@ -5,8 +5,8 @@
 #include<list>
 
 #include"ImgProdCons.h"
-#include"./Armor/ArmorDetector.h"
-#include"./Pose/AngleSolver.hpp"
+#include"ArmorDetector.h"
+#include"AngleSolver.h"
 
 using namespace std;
 using namespace cv;
@@ -133,8 +133,8 @@ void ImgProdCons::consume()
     bool isRecording = false;
     time_t t;
     time(&t);
-    const string fileName = "/home/nvidia/Robomaster/Robomaster2018/" + to_string(t) + ".avi";
-    writer.open(fileName, CV_FOURCC('M', 'J', 'P', 'G'), 25, Size(1280, 720));
+    const string fileName = "/home/nvidia/Robomaster/Robomaster2018/" + to_string(t) + ".avi";//TODO: change the path to own video path
+    writer.open(fileName, VideoWriter::fourcc('M', 'J', 'P', 'G'), 25, Size(1280, 720));
 
 
     /* Variables for serial communication*/

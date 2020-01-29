@@ -24,11 +24,12 @@ SOFTWARE.
 
 Authors:	Rick_Hang, <213162574@seu.edu.cn>
 		BinYan Hu
+
 **************************************************************/
 #pragma once
 #include<opencv2/opencv.hpp>
 #include<array>
-#include"../General/General.h"
+#include"General.h"
 #include<opencv2/ml.hpp>
 
 /**************************************************************
@@ -266,7 +267,7 @@ public:
 	*/
 	void setEnemyColor(int enemy_color)
 	{
-		_enemy_color = enemy_color;init
+		_enemy_color = enemy_color;
 		_self_color = enemy_color == BLUE ? RED : BLUE;
 	}
 

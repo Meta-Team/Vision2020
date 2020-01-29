@@ -6,9 +6,9 @@
 #include<time.h>
 
 #include"ImgProdCons.h"
-#include"./Pose/AngleSolver.hpp"
-#include"./Armor/ArmorDetector.h"
-#include"./Rune/Rune.h"
+#include"AngleSolver.h"
+#include"ArmorDetector.h"
+#include"Rune.h"
 //#define DEBUG
 #define CAMERA_NUMBER 8
 using namespace std;

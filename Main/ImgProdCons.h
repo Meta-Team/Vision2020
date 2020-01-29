@@ -5,11 +5,11 @@
 #include<mutex>
 #include<memory>
 
-#include"./Driver/RMVideoCapture.hpp"
-#include"./Serials/Serial.h"
-#include"./Pose/AngleSolver.hpp"
-#include"./Armor/ArmorDetector.h"
-#include"./Rune/Rune.h"
+#include"RMVideoCapture.h"
+#include"Serial.h"
+#include"AngleSolver.h"
+#include"ArmorDetector.h"
+#include"Rune.h"
 
 namespace rm
 {
@@ -100,6 +100,7 @@ private:
     std::unique_ptr<ArmorDetector> _armorDetectorPtr;
 
     /*Rune detector*/
+    //TODO: wait for new rune detection
     std::unique_ptr<RuneDetector> _runeDetectorPtr;
 
     /* @See: 'Serial::TaskMode' */

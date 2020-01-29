@@ -18,7 +18,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 Authors:	Florentino Zhang, <danteseu@126.com>
 **************************************************************/
-#include "AngleSolver.hpp"
+#include "AngleSolver.h"
 #include "opencv2/opencv.hpp"
 #include "math.h"
 
@@ -327,10 +327,10 @@ void AngleSolver::setEnemyType(int enemytype)
 	enemy_type = enemytype;
 }
 
-//const cv::Vec2f AngleSolver::getCompensateAngle()
-//{
-//	return cv::Vec2f(_xErr, _yErr);
-//}
+const cv::Vec2f AngleSolver::getCompensateAngle()
+{
+	return cv::Vec2f(_xErr, _yErr);
+}
 
 void AngleSolver::setBulletSpeed(int bulletSpeed)
 {

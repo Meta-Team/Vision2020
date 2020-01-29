@@ -21,6 +21,45 @@ ZJU-UIUC Meta 战队视觉组嵌入式程序工程，基于NVIDIA Jetson Nano，
 - [ ] 优化目标装甲板筛选
 
 # STRUCTURE
+    .
+    ├── Armor
+    │   ├── ArmorDetector.cpp
+    │   ├── ArmorDetector.h
+    │   ├── README.md
+    │   ├── SVM.xml
+    │   ├── SVM2.xml
+    │   ├── SVM3.xml
+    │   └── Template
+    ├── CMakeLists.txt
+    ├── Driver
+    │   ├── RMVideoCapture.cpp
+    │   └── RMVideoCapture.hpp
+    ├── General
+    │   └── General.h
+    ├── Main
+    │   ├── ImgProdCons.cpp
+    │   ├── ImgProdCons.h
+    │   ├── main.cpp
+    │   ├── test_infantry.cpp
+    │   └── test_sentry.cpp
+    ├── Pose
+    │   ├── AngleSolver.cpp
+    │   ├── AngleSolver.hpp
+    │   └── README.md
+    ├── README.md
+    ├── Rune
+    │   └── README.md
+    ├── Serials
+    │   ├── README.md
+    │   ├── Serial.cpp
+    │   └── Serial.h
+    ├── camera_data_sheet.txt
+    └── cmake-build-debug
+        ├── CMakeCache.txt
+        ├── CMakeFiles
+        ├── Makefile
+        ├── cmake_install.cmake
+        └── meta_vision_2020.cbp
 
 update: 20/1/27
 

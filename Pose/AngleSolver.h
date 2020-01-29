@@ -22,7 +22,7 @@ Authors:	Florentino Zhang, <danteseu@126.com>
 #include "opencv2/core/core.hpp"
 #include<iostream>
 #include <opencv2/opencv.hpp>
-#include"../General/General.h"
+#include"General.h"
 //#define DEBUG
 
 namespace rm
@@ -124,9 +124,9 @@ public:
 	/*
 	* @brief get the error angle after compensated by the consider of gravity 
 	*/
-	//const cv::Vec2f getCompensateAngle();
+	const cv::Vec2f getCompensateAngle();
 
-    //const cv::Vec2f getPredictedAngle();
+//    const cv::Vec2f getPredictedAngle();
 
 	/*
 	* @brief get the distance between the camera and the target
