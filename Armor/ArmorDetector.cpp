@@ -201,6 +201,17 @@ ArmorDetector::ArmorDetector(const ArmorParam & armorParam)
 void ArmorDetector::init(const ArmorParam &armorParam)
 {
     _param = armorParam;
+
+    // read the digit template
+    for (size_t i = 1; i <= 8; i++) {
+        string small_s = "Template/" + to_string(i) + ".jpg";
+        string big_s = "Template/" + to_string(i*11) + ".jpg";
+        _small_Armor_template[i] = imread(small_s, IMREAD_UNCHANGED);
+        _big_Armor_template[i] = imread(big_s, IMREAD_UNCHANGED);
+        // debug detection:
+        // if (_small_Armor_template[i].empty()) {...}
+        // if (_big_Armor_template[i].empty()) {...}
+    }
 }
 
 void ArmorDetector::loadImg(const cv::Mat & srcImg)
@@ -244,6 +255,7 @@ int ArmorDetector::detect()
 		/*
 		*	pre-treatment
 		*/
+        vector<Mat> channels;   // 用于存放3通道
         split(_roiImg, channels);   // split color channels
         // pretreat and delete the color of friend armor
         if (_enemy_color == RED)
@@ -414,9 +426,9 @@ int ArmorDetector::detect()
 #endif // GET_ARMOR_PIC
 
 	//delete the fake armors
-	_armors.erase(remove_if(_armors.begin(), _armors.end(), [](ArmorDescriptor& i)
+	_armors.erase(remove_if(_armors.begin(), _armors.end(), [&](ArmorDescriptor& i)
 	{
-		return !(i.isArmorPattern());   // ricky: svm or template match
+		return !(i.isArmorPattern(_small_Armor_template, _big_Armor_template, lastEnemy));
 	}), _armors.end());
 
 	if(_armors.empty())
@@ -508,12 +520,11 @@ bool ArmorDescriptor::isArmorPattern(std::vector<cv::Mat> &small,
 // #ifdef IS_ARMOR
     vector<pair<int,double>> score;
     map<int,double> mp;
-    Mat regulatedImg=frontImg;
+    Mat regulatedImg = frontImg;
 	
     for(int i = 0; i < 8; i++){
         //载入模板，模板是在初始化的时候载入ArmorDetector类，
         //因为ArmorDescriptor与其非同类需要间接导入
-        // TODO 在初始化程序载入模板变量: ./Armor/Template/
         Mat tepl = small[i];
         Mat tepl1 = big[i];
         cv::Point matchLoc;     //模板匹配得到位置，这里没用
@@ -533,11 +544,11 @@ bool ArmorDescriptor::isArmorPattern(std::vector<cv::Mat> &small,
         return a.second > b.second;
     });
     //装甲中心位置
-    cv::Point2f c=(vertex[0]+vertex[1]+vertex[2]+vertex[3])/4;
+    cv::Point2f c = (vertex[0]+vertex[1]+vertex[2]+vertex[3])/4;
 	//装甲数字即为得分最高的那个
-    int resultNum=score[0].first;
+    int resultNum = score[0].first;
     //得分太低认为没识别到数字
-    if(score[0].second<0.6)
+    if(score[0].second<0.6)     // ! 这个最低分需要适当调整
     {
         if(//与上次识别到的装甲板位置差不多，且丢失次数不超过一定值
                 std::abs(std::abs(lastEnemy.center.x)-std::abs(c.x))<10&&
@@ -547,7 +558,7 @@ bool ArmorDescriptor::isArmorPattern(std::vector<cv::Mat> &small,
         {//认为该装甲的数字与上次相同
             lastEnemy.lostTimes++;
             lastEnemy.center=c;
-            enemy_num=lastEnemy.num;
+            enemy_num = lastEnemy.num;
             return true;
         }
         else
@@ -573,6 +584,31 @@ bool ArmorDescriptor::isArmorPattern(std::vector<cv::Mat> &small,
 // #ifndef IS_ARMOR
     // return true;
 // #endif
+}
+
+double TemplateMatch(Mat& img, Mat& templ, cv::Point& matchLoc, int method) {
+    Mat result;
+    int result_cols = img.cols - templ.cols + 1;
+    int result_rows = img.rows - templ.rows + 1;
+    result.create(result_rows, result_cols, CV_32FC1);
+
+    matchTemplate(img, templ, result, method);
+    normalize(result, result, 0, 1, NORM_MINMAX, -1, Mat());
+
+    double minVal, maxVal, score;
+    Point minLoc, maxLoc;
+    minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
+
+    // 如果需要使用其他match_method，那么在isArmorPattern中对匹配分数的排序方法可能需要改变
+    if( method  == CV_TM_SQDIFF || method == CV_TM_SQDIFF_NORMED ) { 
+        matchLoc = minLoc; 
+        score = minVal;
+    } else { 
+        matchLoc = maxLoc; 
+        score = maxVal;
+    }
+
+    return score;
 }
 
 const std::vector<cv::Point2f> ArmorDetector::getArmorVertex() const
