@@ -343,7 +343,8 @@ void RMVideoCapture::cvtRaw2Mat(void* data, cv::Mat& image)
 	{
 		//OpenCV method, 60fps
         cv::Mat mjpg(_height, _width, CV_8UC3, data);
-        image = cv::imdecode(mjpg, CV_LOAD_IMAGE_COLOR);
+//        image = cv::imdecode(mjpg, CV_LOAD_IMAGE_COLOR);//opencv3.x
+        image = cv::imdecode(mjpg, cv::IMREAD_COLOR);//opencv4.x
 
 		//libjpeg-turbo method, 30fps
 		//image = Jpeg2Mat((uint8_t*)data,length);
@@ -351,7 +352,8 @@ void RMVideoCapture::cvtRaw2Mat(void* data, cv::Mat& image)
     else if(_format == V4L2_PIX_FMT_YUYV)
 	{
         cv::Mat yuyv(_height, _width, CV_8UC2, data);
-		cv::cvtColor(yuyv, image, CV_YUV2BGR_YUYV);
+//		cv::cvtColor(yuyv, image, cv::CV_YUV2BGR_YUYV);//opencv3.x
+		cv::cvtColor(yuyv, image, cv::COLOR_YUV2BGR_YUYV);//opencv4.x
 	}
 }
 
