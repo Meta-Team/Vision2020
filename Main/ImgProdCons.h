@@ -87,7 +87,7 @@ private:
     void init_signals(void);
 
     /* Camera */
-    std::unique_ptr<RMVideoCapture> _videoCapturePtr;
+    std::unique_ptr<cv::VideoCapture> _videoCapturePtr;
     FrameBuffer _buffer;
 
     /* Serial */

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="meta_vision_2020"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/gavin/CLionProjects/Vision2020/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/gavin/CLionProjects/Vision2020/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="meta_sentry.exe">
+				<Option output="/home/gavin/CLionProjects/Vision2020/cmake-build-debug/meta_sentry.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/gavin/CLionProjects/Vision2020/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Armor"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/CoorData"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Driver"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/General"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Main"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Pose"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Rune"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Serials"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 meta_sentry.exe"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="meta_sentry.exe/fast">
+				<Option output="/home/gavin/CLionProjects/Vision2020/cmake-build-debug/meta_sentry.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/gavin/CLionProjects/Vision2020/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Armor"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/CoorData"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Driver"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/General"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Main"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Pose"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Rune"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Serials"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 meta_sentry.exe/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/gavin/CLionProjects/Vision2020/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="meta_infantry.exe">
+				<Option output="/home/gavin/CLionProjects/Vision2020/cmake-build-debug/meta_infantry.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/gavin/CLionProjects/Vision2020/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Armor"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/CoorData"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Driver"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/General"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Main"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Pose"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Rune"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Serials"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 meta_infantry.exe"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="meta_infantry.exe/fast">
+				<Option output="/home/gavin/CLionProjects/Vision2020/cmake-build-debug/meta_infantry.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/gavin/CLionProjects/Vision2020/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Armor"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/CoorData"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Driver"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/General"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Main"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Pose"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Rune"/>
+					<Add directory="/home/gavin/CLionProjects/Vision2020/Serials"/>
+					<Add directory="/usr/local/include/opencv4"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 meta_infantry.exe/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/gavin/CLionProjects/Vision2020/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Armor/ArmorDetector.cpp">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Armor/ArmorDetector.h">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Driver/RMVideoCapture.cpp">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Driver/RMVideoCapture.h">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/General/numeric_rm.cpp">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/General/numeric_rm.h">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/General/opencv_extended.cpp">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/General/opencv_extended.h">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Main/ImgProdCons.cpp">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Main/ImgProdCons.h">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Main/main.cpp">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Main/test_infantry.cpp">
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Main/test_sentry.cpp">
+			<Option target="meta_sentry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Pose/AngleSolver.cpp">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Pose/AngleSolver.h">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Rune/Rune.cpp">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Rune/Rune.h">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Serials/Serial.cpp">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/Serials/Serial.h">
+			<Option target="meta_sentry.exe"/>
+			<Option target="meta_infantry.exe"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/../../../../usr/local/lib/cmake/opencv4/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/../../../../usr/local/lib/cmake/opencv4/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/../../../../usr/local/lib/cmake/opencv4/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/gavin/CLionProjects/Vision2020/../../../../usr/local/lib/cmake/opencv4/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\opencv4\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

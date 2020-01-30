@@ -66,7 +66,7 @@ bool FrameBuffer::getLatest(Frame& frame)
 
 
 ImgProdCons::ImgProdCons():
-    _videoCapturePtr(make_unique<RMVideoCapture>()),
+    _videoCapturePtr(make_unique<cv::VideoCapture>()),
     _buffer(6),
     _serialPtr(make_unique<Serial>()),
     _solverPtr(make_unique<AngleSolver>()),

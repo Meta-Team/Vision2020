@@ -1,0 +1,4 @@
+/home/gavin/CLionProjects/Vision2020/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/gavin/CLionProjects/Vision2020/cmake-build-debug/CMakeFiles/meta_sentry.exe.dir
+/home/gavin/CLionProjects/Vision2020/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/gavin/CLionProjects/Vision2020/cmake-build-debug/CMakeFiles/meta_infantry.exe.dir

@@ -223,7 +223,7 @@ public:
      * @brief a helper function for armor template matching
      * @return the matching score, representing the level of similarity
      */
-        double TemplateMatch(Mat& img, Mat& templ, cv::Point& matchLoc, int method);
+        double TemplateMatch(cv::Mat& img, cv::Mat& templ, cv::Point& matchLoc, int method);
 
 
 public:
@@ -367,7 +367,7 @@ struct LastenemyType {
         num = 0;
         // if it's the "first enemy", then 100 times lost can tell.
         lostTimes = 100;
-        center = Point2f(0.0, 0.0);
+        center = cv::Point2f(0.0, 0.0);
     }
 };
 

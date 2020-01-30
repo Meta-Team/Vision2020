@@ -24,14 +24,16 @@ void ImgProdCons::init()
 
 
     //Initialize camera
-    _videoCapturePtr->open(0,2); // 0 works fine for small panel , if you meet problem opening the camera, try change this
-    _videoCapturePtr->setVideoFormat(1280, 720, true);
-    _videoCapturePtr->setExposureTime(100);
-    _videoCapturePtr->setFPS(60);
-    _videoCapturePtr->startStream();
-    _videoCapturePtr->info();
+    // @note use cv::VideoCapture class to adjust gamma
+    _videoCapturePtr->open(0);
+    _videoCapturePtr->set(CAP_PROP_FRAME_HEIGHT,320);
+    _videoCapturePtr->set(CAP_PROP_FRAME_WIDTH,320);
+    _videoCapturePtr->set(CAP_PROP_EXPOSURE,100);
+    _videoCapturePtr->set(CAP_PROP_FPS,60);
+    _videoCapturePtr->set(CAP_PROP_FOURCC, VideoWriter::fourcc('M', 'J', 'P', 'G'));
 
-    //Initilize serial
+
+    //Initialize serial
     _serialPtr->openPort();
     _serialPtr->setDebug(true);
     int self_color;
@@ -46,7 +48,9 @@ void ImgProdCons::init()
     AngleSolverParam angleParam;
     angleParam.readFile(9);
     _solverPtr->init(angleParam);
-    _solverPtr->setResolution(_videoCapturePtr->getResolution());
+    _solverPtr->setResolution(cv::Size2i(
+            _videoCapturePtr->get(CAP_PROP_FRAME_WIDTH),
+            _videoCapturePtr->get(CAP_PROP_FRAME_HEIGHT)));
 
 
     //Initialize armor detector
@@ -134,7 +138,7 @@ void ImgProdCons::consume()
     time_t t;
     time(&t);
     const string fileName = "/home/nvidia/Robomaster/Robomaster2018/" + to_string(t) + ".avi";//TODO: change the path to own video path
-    writer.open(fileName, VideoWriter::fourcc('M', 'J', 'P', 'G'), 25, Size(1280, 720));
+    writer.open(fileName, VideoWriter::fourcc('M', 'J', 'P', 'G'), 60, Size(640, 320));
 
 
     /* Variables for serial communication*/
