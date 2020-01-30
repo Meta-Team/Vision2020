@@ -70,7 +70,7 @@ Serial::~Serial()
 
 int Serial::openPort()
 {
-    _serialFd = open("/dev/ttyTHS2", O_RDWR | O_NOCTTY | O_NONBLOCK);
+    _serialFd = open("/dev/ttyTHS1", O_RDWR | O_NOCTTY | O_NONBLOCK);
      if (_serialFd == -1)
     {        
         cout << "Open serial port failed." << endl;

@@ -215,7 +215,16 @@ public:
 	/*
 	*	@Return: if the centeral pattern belong to an armor
 	*/
-    	bool isArmorPattern() const;
+    	bool isArmorPattern(std::vector<cv::Mat> &small, 
+                            std::vector<cv::Mat> &big ,
+                            LastenemyType &lastEnemy);
+        
+    /**
+     * @brief a helper function for armor template matching
+     * @return the matching score, representing the level of similarity
+     */
+        double TemplateMatch(Mat& img, Mat& templ, cv::Point& matchLoc, int method);
+
 
 public:
 	std::array<cv::RotatedRect, 2> lightPairs; //0 left, 1 right
@@ -231,6 +240,7 @@ public:
 	//	1 -> big
 	//	-1 -> unkown
 	int type;
+    int enemy_num;
 };
 
 /*
@@ -320,6 +330,11 @@ private:
 	
 	std::vector<ArmorDescriptor> _armors;
 
+    LastenemyType lastEnemy;
+
+    std::vector<cv::Mat> _small_Armor_template = std::vector<cv::Mat>(8);
+    std::vector<cv::Mat> _big_Armor_template = std::vector<cv::Mat>(8);
+
 	ArmorDescriptor _targetArmor; //relative coordinates
 
 	int _flag;
@@ -335,6 +350,25 @@ private:
 	int _allCnt = 0;
 #endif // GET_ARMOR_PIC
 
+};
+
+/**
+ * @brief this structure serves as a container of infos of last enemy, for template match
+ */
+struct LastenemyType {
+    /**
+     * @brief the armor number 
+     */
+    int num;
+    int lostTimes;
+    cv::Point2f center;
+
+    LastenemyType() {
+        num = 0;
+        // if it's the "first enemy", then 100 times lost can tell.
+        lostTimes = 100;
+        center = Point2f(0.0, 0.0);
+    }
 };
 
 }
