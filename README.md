@@ -11,7 +11,7 @@ ZJU-UIUC Meta 战队视觉组嵌入式程序工程，基于NVIDIA Jetson Nano，
     - 用~v4l2~还是DJI的RMVideoCapture
     - [ ] 上机测试
 - [ ] 灯条识别的方式修改
-    - [ ] 数字模板
+    - [x] 数字模板
     - [ ] 上机测试
 - [ ] 自己车的串口通信
     - [ ] 传回一个最优目标
@@ -21,6 +21,8 @@ ZJU-UIUC Meta 战队视觉组嵌入式程序工程，基于NVIDIA Jetson Nano，
 - [ ] 优化目标装甲板筛选
 
 # STRUCTURE
+
+update: 20/1/30
     .
     ├── Armor
     │   ├── ArmorDetector.cpp
@@ -60,7 +62,3 @@ ZJU-UIUC Meta 战队视觉组嵌入式程序工程，基于NVIDIA Jetson Nano，
         ├── Makefile
         ├── cmake_install.cmake
         └── meta_vision_2020.cbp
-
-update: 20/1/27
-
-emmmm
