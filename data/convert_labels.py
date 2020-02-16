@@ -55,6 +55,7 @@ for filename in all_names:
         filename2.extend(ch)
     os.rename(filename, ''.join(filename2))
 
+
 wd = getcwd()
 if not os.path.exists('labels/'):
     os.makedirs('labels/')
