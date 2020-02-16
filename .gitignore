@@ -242,3 +242,4 @@ fabric.properties
 !/yolov3-tiny.cfg
 !data/robot.data
 !data/robot.names
+*.xml
