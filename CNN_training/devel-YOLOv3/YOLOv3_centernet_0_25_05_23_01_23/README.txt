@@ -1,0 +1,7 @@
+num_epochs = 30
+batch_size = 256
+lr = 1e-3
+
+ROCOACCAID = 0.700382
+ROCOACCAUTO= 0.712855
+AVG_FPS on V100: 10593.6

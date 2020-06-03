@@ -1,0 +1,76 @@
+This is a guide for installing MXNET environment on Jetson Nano B02 (the first commercial version after the release of the very first developer version).
+Building MXNET on Jetson Nano is very time costly while it is still quite likely that we run into some dependency issues when the new libraries are not recognized by MXNET, this is often the case when we have installed some OpenCV, CUDA, or other libraries with new versions, and when MXNET source code is written these new libraries haven't been released.
+
+We install MXNET 1.6(prebuilt version) with GPU support in Python 3 in user instead of root.
+
+In the document below, all the codes are placed in "", for example:
+"
+echo "This is some code" we run.
+" 
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+Prerequisites: 
+1. Jetson Nano OS is already installed. (We use JetPack 4.3, with Ubuntu 18.04.3 and CUDA 10.0)
+2. Jetson Nano is connected to the Internet. (It's good to use apt source and pip source in China)
+3. mxnet-1.6.0-py3-none-any.whl is already downloaded.
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+Steps:
+1. Install libraries for some basic needs.
+Open a terminal on Jetson Nano, run the code below:
+"
+sudo apt update
+sudo apt -y install \
+                        build-essential \
+                        git \
+                        graphviz \
+                        libatlas-base-dev \
+                        libopencv-dev \
+                        python3-pip
+"
+----------------------------------------------------------------------------------------------------
+2. Install and update pip3 and setuptools.
+Run the code below:
+"
+pip3 install --upgrade \
+                        pip \
+                        setuptools
+"
+----------------------------------------------------------------------------------------------------
+3. Install important dependencies of MXNET:
+Run the code below:
+"
+pip3 install \
+                graphviz==0.8.4 \
+                jupyter \
+                numpy==1.16
+"
+----------------------------------------------------------------------------------------------------
+4. Navigate to the folder where you have placed your mxnet-1.6.0-py3-none-any.whl, and install MXNET, this can take a while.
+"
+pip3 install mxnet-1.6.0-py3-none-any.whl 
+"
+----------------------------------------------------------------------------------------------------
+5. Check the location of MXNET runtime library, remember to add the location of MXNET library to PATH.
+In our case, the MXNET runtime library named ".so" is placed under /home/j/.local/mxnet, (our account name is j) so we add the code below to the last line of file .bashrc under ~/, closed current terminal and launched a new terminal.
+"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/j/.local/mxnet
+"
+----------------------------------------------------------------------------------------------------
+6. Verify that you have installed MXNET correctly.
+Launch python3 from your user account by typing:
+"
+python3
+"
+Then type in
+"
+import mxnet as mx
+from mxnet import nd
+a = nd.array([1,2,3,4], ctx=mx.gpu(0))
+b = a * 3
+print(b)
+"
+If b is <NDArray 4 @gpu(0)>, then you have successfully installed MXNET with GPU support on Jetson Nano. Otherwise please verify that you have installed all the dependencies, try uninstalling MXNET and install MXNET again, or take a fresh start to install with root privilege, by adding sudo for pip3 install.
